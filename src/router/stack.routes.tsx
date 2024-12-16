@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './types';
@@ -10,7 +11,8 @@ import {RootState} from '../store/pomodoro';
 import {PomoFocus} from '../store/pomodoro/types';
 import {TouchableOpacity} from 'react-native';
 import Settings from '../screens/settings';
-import {Icon} from 'react-native-elements';
+import {Icon} from '../assets/icons';
+import SVG from 'react-native-svg-renderer';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -41,7 +43,7 @@ export default function StackRoutes() {
               onPress={() => {
                 navigation.navigate(Route.Settings);
               }}>
-              <Icon name="settings" size={25} color={colors.whiteColor} />
+              <SVG svgXmlData={Icon.settings} height={25} width={25} />
             </TouchableOpacity>
           ),
           headerTransparent: true,
