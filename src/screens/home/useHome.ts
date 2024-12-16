@@ -3,8 +3,7 @@ import {OnComplete} from 'react-native-countdown-circle-timer';
 import {useDispatch, useSelector} from 'react-redux';
 import {pomodoroAction, RootState} from './../../store/pomodoro';
 import {PomoFocus} from '../../store/pomodoro/types';
-// import {playSoundAndVibrate} from '../../utils/soundUtilis';
-// import {Audio} from 'expo-av';
+import {playSound} from '../../utils/soundUtilis';
 
 export const useHome = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,6 @@ export const useHome = () => {
   const [finish, setIsFinish] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState<number>(0);
-  //   const [sound, setSound] = useState<Audio.Sound>();
   const [key, setKey] = useState(0);
 
   const durations = useMemo(
@@ -40,7 +38,7 @@ export const useHome = () => {
 
     if (
       pomodoroSession >= pomodoro.amountOfLongBreak &&
-      focus != PomoFocus.BREAK
+      focus !== PomoFocus.BREAK
     ) {
       newSession = 1;
       pomoFocus = PomoFocus.LONG_BREAK;
@@ -56,17 +54,11 @@ export const useHome = () => {
   useEffect(() => {
     setDuration(durations[focus]);
     if (finish) {
-      //   playSoundAndVibrate('beep', setSound);
+      playSound();
       setIsFinish(false);
       setIsPlaying(pomodoro.IsAutoStart);
     }
   }, [durations, finish, focus, pomodoro.IsAutoStart]);
-
-  //   useEffect(() => {
-  //     return () => {
-  //       sound?.unloadAsync();
-  //     };
-  //   }, [sound]);
 
   const onComplete = useCallback((): OnComplete => {
     setIsFinish(true);
