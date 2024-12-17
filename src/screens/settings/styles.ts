@@ -53,4 +53,10 @@ export const styles = StyleSheet.create({
   textButton: {
     fontSize: 18,
   },
+  separator: {
+    marginHorizontal: 8,
+  },
+  containerScroll: {
+    margin: 16,
+  },
 });

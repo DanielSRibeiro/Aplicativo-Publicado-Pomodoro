@@ -41,14 +41,14 @@ export default function Settings() {
             value={isEnabled}
           />
         </View>
-        <ScrollView style={{margin: 16}}>
+        <ScrollView style={styles.containerScroll}>
           <Text style={styles.title}>Timer Control</Text>
           <Text style={styles.subtitle}>Time in minutes</Text>
           <View style={styles.containerStepper}>
             <InputStepper {...inputStepperFocus} />
-            <View style={{marginHorizontal: 8}} />
+            <View style={styles.separator} />
             <InputStepper {...inputStepperBreak} />
-            <View style={{marginHorizontal: 8}} />
+            <View style={styles.separator} />
             <InputStepper {...inputStepperLongBreak} />
           </View>
 

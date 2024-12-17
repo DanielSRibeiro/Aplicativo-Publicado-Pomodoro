@@ -6,7 +6,7 @@ import {styles} from './styles';
 
 export default function InputStepper(inputType: IInputStepper) {
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <Text style={styles.text}>{inputType.title}</Text>
       <View style={styles.input}>
         <TextInput

@@ -12,7 +12,6 @@ import {styles} from './styles';
 import {useHome} from './useHome';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {IStepsInterval} from './types';
-import {colors} from '../../utils/colors';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export default function Home() {
@@ -27,21 +26,18 @@ export default function Home() {
     isFocus,
     steps,
     onPressReset,
+    setRemainingTime,
+    focusButtonText,
   } = useHome();
 
   const headerHeight = useHeaderHeight();
   const renderItem = ({item}: ListRenderItemInfo<IStepsInterval>) => {
     return (
       <View
-        style={{
-          width: 35,
-          height: 35,
-          backgroundColor: item.isCompleted
-            ? colors.darkPrimaryColor
-            : colors.whiteColor,
-          marginHorizontal: 4,
-          borderRadius: 50,
-        }}
+        style={[
+          styles.steps,
+          item.isCompleted ? styles.darkColor : styles.whiteColor,
+        ]}
       />
     );
   };
@@ -60,7 +56,8 @@ export default function Home() {
               trailStrokeWidth={2}
               colors={['#004777', '#F7B801', '#A30000', '#A30000']}
               colorsTime={[1500, 900, 300, 120]}
-              onComplete={onComplete}>
+              onComplete={onComplete}
+              onUpdate={setRemainingTime}>
               {({remainingTime}) => {
                 const minutes = Math.floor(remainingTime / 60);
                 const seconds = remainingTime % 60;
@@ -87,7 +84,7 @@ export default function Home() {
             </CountdownCircleTimer>
             <View style={styles.containerbuttons}>
               <TouchableOpacity style={styles.button} onPress={onPressFocus}>
-                <Text>{isPlaying ? 'Pause' : 'Goback to Focus'}</Text>
+                <Text>{focusButtonText}</Text>
               </TouchableOpacity>
               {isPlaying && (
                 <TouchableOpacity style={styles.button} onPress={onPressNext}>

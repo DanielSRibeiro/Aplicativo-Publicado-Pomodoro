@@ -42,4 +42,16 @@ export const styles = StyleSheet.create({
     fontSize: 64,
     color: colors.whiteColor,
   },
+  steps: {
+    width: 35,
+    height: 35,
+    marginHorizontal: 4,
+    borderRadius: 50,
+  },
+  darkColor: {
+    backgroundColor: colors.darkPrimaryColor,
+  },
+  whiteColor: {
+    backgroundColor: colors.whiteColor,
+  },
 });
