@@ -8,8 +8,8 @@ Um aplicativo que utiliza o método Pomodoro ajuda a melhorar a produtividade ao
 - [x] Navigation
 - [x] Redux Toolkit e Redux Persist
 - [x] background action
-- [] Notificações
-- [] Testes unitários
+- [ ] Notificações
+- [ ] Testes unitários
 
 ### Screenshot
 
