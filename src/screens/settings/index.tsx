@@ -14,6 +14,7 @@ import {useSettings} from './useSettings';
 import {colors} from '../../utils/colors';
 import InputStepper from '../../components/inputStepper';
 import ButtonStepper from '../../components/buttonStepper';
+import {settingsLocales} from './locales/settingsLocales';
 
 export default function Settings() {
   const {
@@ -30,7 +31,7 @@ export default function Settings() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.containerSwitch}>
-          <Text style={styles.text}>Auto Start</Text>
+          <Text style={styles.text}>{settingsLocales.autoStart}</Text>
           <Switch
             trackColor={{
               false: colors.falseTaggeSwitch,
@@ -42,8 +43,8 @@ export default function Settings() {
           />
         </View>
         <ScrollView style={styles.containerScroll}>
-          <Text style={styles.title}>Timer Control</Text>
-          <Text style={styles.subtitle}>Time in minutes</Text>
+          <Text style={styles.title}>{settingsLocales.title}</Text>
+          <Text style={styles.subtitle}>{settingsLocales.timeInMinute}</Text>
           <View style={styles.containerStepper}>
             <InputStepper {...inputStepperFocus} />
             <View style={styles.separator} />
@@ -64,7 +65,7 @@ export default function Settings() {
             </View>
           </View>
           <TouchableOpacity style={styles.button} onPress={onPressSave}>
-            <Text style={styles.textButton}>Save</Text>
+            <Text style={styles.textButton}>{settingsLocales.buttonText}</Text>
           </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>

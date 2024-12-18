@@ -3,6 +3,7 @@ import {IInputStepper} from '../home/types';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {pomodoroAction, RootState} from '../../store/pomodoro';
+import {settingsLocales} from './locales/settingsLocales';
 
 export const useSettings = () => {
   const dispatch = useDispatch();
@@ -35,28 +36,28 @@ export const useSettings = () => {
     setAmountOfLongBreak(amountOfLongBreak - 1);
 
   const inputStepperFocus: IInputStepper = {
-    title: 'Pomodoro',
+    title: settingsLocales.pomodoroText,
     time: pomodoroTime,
     increaseTime: increaseTimeFocus,
     decreaseTime: decreaseTimeFocus,
   };
 
   const inputStepperBreak: IInputStepper = {
-    title: 'Break',
+    title: settingsLocales.breakText,
     time: breakTime,
     increaseTime: increaseTimeBreak,
     decreaseTime: decreaseTimeBreak,
   };
 
   const inputStepperLongBreak: IInputStepper = {
-    title: 'Long Break',
+    title: settingsLocales.longBreakText,
     time: longBreakTime,
     increaseTime: increaseTimeLongBreak,
     decreaseTime: decreaseTimeLongBreak,
   };
 
   const longBreakInterval: IInputStepper = {
-    title: 'Long Break interval',
+    title: settingsLocales.intevalText,
     time: amountOfLongBreak,
     increaseTime: increaseAmountOfLongBreak,
     decreaseTime: decreaseAmountOfLongBreak,

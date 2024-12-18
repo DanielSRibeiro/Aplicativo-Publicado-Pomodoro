@@ -6,6 +6,8 @@ import {PomoFocus} from '../../store/pomodoro/types';
 import {AppState, AppStateStatus} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import {playSound} from '../../utils/soundUtilis';
+import {homeLocales} from './locales/homeLocales';
+import {settingsLocales} from '../settings/locales/settingsLocales';
 
 let i = 0;
 let focusLocal: PomoFocus | undefined;
@@ -24,7 +26,9 @@ export const useHome = () => {
   const [remainingTime, setRemainingTime] = useState<number>(0);
   const [key, setKey] = useState(0);
 
-  const focusButtonText = isPlaying ? 'Pause' : 'Goback to Focus';
+  const focusButtonText = isPlaying
+    ? homeLocales.pause
+    : homeLocales.goBackText;
 
   const durations = useMemo(
     () => ({
@@ -33,6 +37,15 @@ export const useHome = () => {
       [PomoFocus.LONG_BREAK]: pomodoro.longBreakTime,
     }),
     [pomodoro],
+  );
+
+  const focusDescription = useMemo(
+    () => ({
+      [PomoFocus.FOCUS]: homeLocales.getPomodoroSession(pomodoroSession),
+      [PomoFocus.BREAK]: settingsLocales.breakText,
+      [PomoFocus.LONG_BREAK]: settingsLocales.longBreakText,
+    }),
+    [pomodoroSession],
   );
 
   const steps = useMemo(() => {
@@ -90,8 +103,6 @@ export const useHome = () => {
     dispatch(pomodoroAction.updatePomodoroSession(1));
     dispatch(pomodoroAction.setFocus(PomoFocus.FOCUS));
   };
-
-  const isFocus = useMemo(() => focus === PomoFocus.FOCUS, [focus]);
 
   const startBackgroundSync = useCallback(() => {
     BackgroundTimer.runBackgroundTimer(() => {
@@ -156,16 +167,15 @@ export const useHome = () => {
   return {
     isPlaying,
     duration,
-    pomodoroSession,
     key,
     setKey,
     onComplete,
     onPressNext,
     onPressFocus,
-    isFocus,
     steps,
     onPressReset,
     setRemainingTime,
     focusButtonText,
+    focusDescription: focusDescription[focus],
   };
 };

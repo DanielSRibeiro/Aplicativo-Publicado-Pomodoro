@@ -13,21 +13,21 @@ import {useHome} from './useHome';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {IStepsInterval} from './types';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {homeLocales} from './locales/homeLocales';
 
 export default function Home() {
   const {
     isPlaying,
     duration,
-    pomodoroSession,
     key,
     onComplete,
     onPressNext,
     onPressFocus,
-    isFocus,
     steps,
     onPressReset,
     setRemainingTime,
     focusButtonText,
+    focusDescription,
   } = useHome();
 
   const headerHeight = useHeaderHeight();
@@ -59,25 +59,14 @@ export default function Home() {
               onComplete={onComplete}
               onUpdate={setRemainingTime}>
               {({remainingTime}) => {
-                const minutes = Math.floor(remainingTime / 60);
-                const seconds = remainingTime % 60;
-                const minutesString =
-                  minutes < 10 ? `0${minutes}` : `${minutes}`;
-                const secondsString =
-                  seconds < 10 ? `0${seconds}` : `${seconds}`;
-
                 return (
                   <>
-                    {isFocus && (
-                      <Text
-                        style={
-                          styles.textNumberSessions
-                        }>{`Pomodoro #${pomodoroSession}`}</Text>
-                    )}
-                    <Text
-                      style={
-                        styles.textTime
-                      }>{`${minutesString}:${secondsString}`}</Text>
+                    <Text style={styles.textNumberSessions}>
+                      {focusDescription}
+                    </Text>
+                    <Text style={styles.textTime}>
+                      {homeLocales.getFormatTime(remainingTime)}
+                    </Text>
                   </>
                 );
               }}
@@ -88,7 +77,7 @@ export default function Home() {
               </TouchableOpacity>
               {isPlaying && (
                 <TouchableOpacity style={styles.button} onPress={onPressNext}>
-                  <Text>Next</Text>
+                  <Text>{homeLocales.buttonNext}</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -105,7 +94,7 @@ export default function Home() {
         </View>
         {isPlaying && (
           <TouchableOpacity style={styles.bottomButton} onPress={onPressReset}>
-            <Text style={styles.buttonText}>Reset</Text>
+            <Text style={styles.buttonText}>{homeLocales.buttonReset}</Text>
           </TouchableOpacity>
         )}
       </SafeAreaView>
