@@ -121,9 +121,11 @@ export const useHome = () => {
       focusLocal = pomoFocus;
       pomodoroSessionLocal = newSession;
       i = 0;
+      dispatch(pomodoroAction.updatePomodoroSession(pomodoroSessionLocal));
+      dispatch(pomodoroAction.setFocus(focusLocal));
       playSound();
     }, 1000);
-  }, [remainingTime, durations, pomodoro.amountOfLongBreak]);
+  }, [remainingTime, durations, pomodoro.amountOfLongBreak, dispatch]);
 
   useEffect(() => {
     const handleAppStateChange = async (nextAppState: AppStateStatus) => {
@@ -134,8 +136,6 @@ export const useHome = () => {
         startBackgroundSync();
       } else if (nextAppState === 'active') {
         stopBackgroundSync();
-        dispatch(pomodoroAction.updatePomodoroSession(pomodoroSessionLocal));
-        dispatch(pomodoroAction.setFocus(focusLocal));
       }
     };
 

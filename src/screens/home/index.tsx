@@ -55,7 +55,7 @@ export default function Home() {
               strokeWidth={10}
               trailStrokeWidth={2}
               colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-              colorsTime={[1500, 900, 300, 120]}
+              colorsTime={[1500, 900, 300, 0]}
               onComplete={onComplete}
               onUpdate={setRemainingTime}>
               {({remainingTime}) => {
