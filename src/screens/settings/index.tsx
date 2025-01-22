@@ -4,7 +4,6 @@ import {
   ScrollView,
   Switch,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -33,6 +32,7 @@ export default function Settings() {
         <View style={styles.containerSwitch}>
           <Text style={styles.text}>{settingsLocales.autoStart}</Text>
           <Switch
+            style={styles.switch}
             trackColor={{
               false: colors.falseTaggeSwitch,
               true: colors.trueTaggeSwitch,
@@ -56,11 +56,7 @@ export default function Settings() {
           <View style={styles.containerStepper}>
             <Text style={styles.text}>{longBreakInterval.title}</Text>
             <View style={styles.input}>
-              <TextInput
-                keyboardType="numeric"
-                value={String(longBreakInterval.time)}
-                disableFullscreenUI
-              />
+              <Text>{String(longBreakInterval.time)}</Text>
               <ButtonStepper {...longBreakInterval} />
             </View>
           </View>

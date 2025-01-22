@@ -9,10 +9,10 @@ export default function ButtonStepper({
 }: IInputStepper) {
   return (
     <View>
-      <TouchableOpacity onPress={increaseTime}>
+      <TouchableOpacity accessibilityLabel="Add" onPress={increaseTime}>
         <Text style={styles.buttonText}>▲</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={decreaseTime}>
+      <TouchableOpacity accessibilityLabel="Remove" onPress={decreaseTime}>
         <Text style={styles.buttonText}>▼</Text>
       </TouchableOpacity>
     </View>

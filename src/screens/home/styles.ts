@@ -27,12 +27,13 @@ export const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+    height: 48,
     marginVertical: 32,
     marginHorizontal: 16,
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
-    padding: 10,
     borderRadius: 10,
+    justifyContent: 'center',
   },
   textNumberSessions: {
     fontSize: 16,

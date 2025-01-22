@@ -8,6 +8,10 @@ import BackgroundTimer from 'react-native-background-timer';
 import {playSound} from '../../utils/soundUtilis';
 import {homeLocales} from './locales/homeLocales';
 import {settingsLocales} from '../settings/locales/settingsLocales';
+import {
+  onDisplayNotification,
+  requestUserPermission,
+} from '../../utils/notificationUtilis';
 
 let i = 0;
 let focusLocal: PomoFocus | undefined;
@@ -106,13 +110,19 @@ export const useHome = () => {
 
   const startBackgroundSync = useCallback(() => {
     BackgroundTimer.runBackgroundTimer(() => {
+      if (
+        !focusLocal ||
+        !pomodoroSessionLocal ||
+        (!pomodoro.IsAutoStart && !isFisrt)
+      ) {
+        return;
+      }
       i++;
 
       if (isFisrt && i < remainingTime) {
         return;
       }
-      isFisrt = false;
-      if (i < durations[focusLocal]) {
+      if (!isFisrt && i < durations[focusLocal]) {
         return;
       }
 
@@ -132,13 +142,23 @@ export const useHome = () => {
       focusLocal = pomoFocus;
       pomodoroSessionLocal = newSession;
       i = 0;
-      dispatch(pomodoroAction.updatePomodoroSession(pomodoroSessionLocal));
-      dispatch(pomodoroAction.setFocus(focusLocal));
-      playSound();
+      if (!isFisrt) {
+        dispatch(pomodoroAction.updatePomodoroSession(pomodoroSessionLocal));
+        dispatch(pomodoroAction.setFocus(focusLocal));
+      }
+      onDisplayNotification(homeLocales.sessionMessages(focusLocal));
+      isFisrt = false;
     }, 1000);
-  }, [remainingTime, durations, pomodoro.amountOfLongBreak, dispatch]);
+  }, [
+    pomodoro.IsAutoStart,
+    pomodoro.amountOfLongBreak,
+    remainingTime,
+    durations,
+    dispatch,
+  ]);
 
   useEffect(() => {
+    requestUserPermission();
     const handleAppStateChange = async (nextAppState: AppStateStatus) => {
       if (nextAppState === 'background' && isPlaying) {
         focusLocal = focus;

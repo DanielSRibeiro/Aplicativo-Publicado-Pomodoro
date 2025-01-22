@@ -1,3 +1,5 @@
+import {PomoFocus} from '../../../store/pomodoro/types';
+
 export const homeLocales = {
   buttonNext: 'Next',
   buttonReset: 'Reset',
@@ -12,4 +14,12 @@ export const homeLocales = {
   goBackText: 'Goback to Focus',
   getPomodoroSession: (pomodoroSession: number) =>
     `Pomodoro #${pomodoroSession}`,
+
+  sessionMessages: (pomoFocus: PomoFocus) => {
+    return {
+      [PomoFocus.FOCUS]: "Time to focus! Let's get things done.",
+      [PomoFocus.BREAK]: 'Focus session complete! Time for a break.',
+      [PomoFocus.LONG_BREAK]: 'Time for a long break! Unwind and refresh.',
+    }[pomoFocus];
+  },
 };

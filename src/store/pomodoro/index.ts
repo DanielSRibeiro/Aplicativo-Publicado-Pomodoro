@@ -8,7 +8,7 @@ const initialState: InitialState = {
     breakTime: 300,
     longBreakTime: 900,
     amountOfLongBreak: 4,
-    IsAutoStart: false,
+    IsAutoStart: true,
     pomodoroSession: 1,
   },
   focus: PomoFocus.FOCUS,

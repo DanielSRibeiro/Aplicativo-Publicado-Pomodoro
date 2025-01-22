@@ -1,4 +1,4 @@
-package com.pomodoro
+package com.cyclefocuspomo
 
 import android.app.Application
 import com.facebook.react.PackageList
@@ -40,5 +40,6 @@ class MainApplication : Application(), ReactApplication {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       load()
     }
+//      com.facebook.react.bridge.ReactFeatureFlags.useTurboModules = true;
   }
 }

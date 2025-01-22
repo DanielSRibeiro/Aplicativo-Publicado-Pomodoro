@@ -47,11 +47,19 @@ export const styles = StyleSheet.create({
     marginHorizontal: 16,
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
-    padding: 10,
+    padding: 14,
     borderRadius: 25,
   },
   textButton: {
     fontSize: 18,
+  },
+  switch: {
+    height: 48,
+    width: 48,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   separator: {
     marginHorizontal: 8,

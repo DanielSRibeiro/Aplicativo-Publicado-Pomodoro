@@ -71,12 +71,18 @@ export default function Home() {
                 );
               }}
             </CountdownCircleTimer>
-            <View style={styles.containerbuttons}>
-              <TouchableOpacity style={styles.button} onPress={onPressFocus}>
+            <View accessible={true} style={styles.containerbuttons}>
+              <TouchableOpacity
+                accessibilityLabel="Init or stop button"
+                style={styles.button}
+                onPress={onPressFocus}>
                 <Text>{focusButtonText}</Text>
               </TouchableOpacity>
               {isPlaying && (
-                <TouchableOpacity style={styles.button} onPress={onPressNext}>
+                <TouchableOpacity
+                  accessibilityLabel="next step"
+                  style={styles.button}
+                  onPress={onPressNext}>
                   <Text>{homeLocales.buttonNext}</Text>
                 </TouchableOpacity>
               )}
@@ -85,6 +91,7 @@ export default function Home() {
 
           <View>
             <FlatList
+              accessibilityLabel="list of steps"
               horizontal
               keyExtractor={item => item.id.toString()}
               data={steps}

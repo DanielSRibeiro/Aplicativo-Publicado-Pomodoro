@@ -9,7 +9,7 @@ import {screenOptions} from './utils';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/pomodoro';
 import {PomoFocus} from '../store/pomodoro/types';
-import {TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import Settings from '../screens/settings';
 import {Icon} from '../assets/icons';
 import SVG from 'react-native-svg-renderer';
@@ -40,6 +40,8 @@ export default function StackRoutes() {
         options={({navigation}) => ({
           headerRight: () => (
             <TouchableOpacity
+              style={styles.button}
+              accessibilityLabel="settings button"
               onPress={() => {
                 navigation.navigate(Route.Settings);
               }}>
@@ -54,3 +56,9 @@ export default function StackRoutes() {
     </Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    padding: 12,
+  },
+});

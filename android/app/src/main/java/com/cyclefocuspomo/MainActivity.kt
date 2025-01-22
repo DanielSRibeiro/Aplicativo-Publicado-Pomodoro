@@ -1,4 +1,4 @@
-package com.pomodoro
+package com.cyclefocuspomo
 
 import android.os.Bundle;
 import com.facebook.react.PackageList
