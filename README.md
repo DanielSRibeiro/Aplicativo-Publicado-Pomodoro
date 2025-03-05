@@ -31,18 +31,4 @@ Ativo e disponível para download.
 
 ### Screenshot
 
-- ## Tela inicial
-
-  <img src="src/assets/Print_Focus.jpeg" width="150"/>
-
-- ## Pausa
-
-  <img src="src/assets/Print_Break.jpeg" width="150"/>
-
-- ## Longa Pausa
-
-  <img src="src/assets/Print_Long_break.jpeg" width="150"/>
-
-- ## Configuraçoes
-
-  <img src="src/assets/Print_Settings.jpeg" width="150"/>
+<img src="src/assets/Print_Focus.jpeg" width="200"/> <img src="src/assets/Print_Break.jpeg" width="200"/> <img src="src/assets/Print_Long_break.jpeg" width="200"/> <img src="src/assets/Print_Settings.jpeg" width="200"/>

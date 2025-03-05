@@ -159,25 +159,29 @@ export const useHome = () => {
 
   useEffect(() => {
     requestUserPermission();
-    const handleAppStateChange = async (nextAppState: AppStateStatus) => {
-      if (nextAppState === 'background' && isPlaying) {
-        focusLocal = focus;
-        pomodoroSessionLocal = pomodoroSession;
-        isFisrt = true;
-        startBackgroundSync();
-      } else if (nextAppState === 'active') {
-        stopBackgroundSync();
-      }
-    };
+    try {
+      const handleAppStateChange = async (nextAppState: AppStateStatus) => {
+        if (nextAppState === 'background' && isPlaying) {
+          focusLocal = focus;
+          pomodoroSessionLocal = pomodoroSession;
+          isFisrt = true;
+          startBackgroundSync();
+        } else if (nextAppState === 'active') {
+          stopBackgroundSync();
+        }
+      };
 
-    const subscription = AppState.addEventListener(
-      'change',
-      handleAppStateChange,
-    );
+      const subscription = AppState.addEventListener(
+        'change',
+        handleAppStateChange,
+      );
 
-    return () => {
-      subscription.remove();
-    };
+      return () => {
+        subscription.remove();
+      };
+    } catch (error) {
+      console.error('Erro:', error);
+    }
   }, [dispatch, focus, isPlaying, pomodoroSession, startBackgroundSync]);
 
   const stopBackgroundSync = () => {

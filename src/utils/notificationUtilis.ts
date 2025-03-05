@@ -1,12 +1,16 @@
 import notifee, {AuthorizationStatus} from '@notifee/react-native';
 
 export async function requestUserPermission() {
-  const settings = await notifee.requestPermission();
+  try {
+    const settings = await notifee.requestPermission();
 
-  if (settings.authorizationStatus >= AuthorizationStatus.AUTHORIZED) {
-    console.log('Permission settings:', settings);
-  } else {
-    console.log('User declined permissions');
+    if (settings.authorizationStatus >= AuthorizationStatus.AUTHORIZED) {
+      console.log('Permission settings:', settings);
+    } else {
+      console.log('User declined permissions');
+    }
+  } catch (error) {
+    console.error('Erro ao chamar a permissão:', error);
   }
 }
 export async function onDisplayNotification(sessionMessages: string) {
